@@ -15,6 +15,9 @@ mongose.connect(process.env.MONGODB_SECRET, { useNewUrlParser: true }, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//setting up Routers
+app.use("api/auth", require("./Routes/Auth"));
+
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
