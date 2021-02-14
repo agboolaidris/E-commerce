@@ -2,8 +2,8 @@ const User = require("../../Models/User");
 const bcrypt = require("bcrypt");
 
 // hash password function
-const Hash = (password) => {
-  const salt = bcrypt.genSalt();
+const Hash = async (password) => {
+  const salt = await bcrypt.genSalt();
   return bcrypt.hash(password, salt);
 };
 
@@ -44,11 +44,11 @@ const register = async (req, res) => {
       res.status(400).json({ msg: "password not match" });
 
     //check if email already exist in database
-    const user_email = User.findOne({ email });
+    const user_email = await User.findOne({ email });
     if (user_email) res.status(400).json({ msg: "account already exist " });
 
     //check if username already exist in database
-    const user_username = User.findOne({ username });
+    const user_username = await User.findOne({ username });
     if (user_username)
       res.status(400).json({ msg: "username has been choice" });
 
@@ -67,7 +67,9 @@ const register = async (req, res) => {
     if (!response)
       res.status(400).json({ msg: "error occur during saving to database" });
     res.json({ msg: "user register successful" });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
 };
 
 module.exports = register;
