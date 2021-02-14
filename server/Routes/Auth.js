@@ -1,5 +1,7 @@
 const register = require("../Controls/Auth/Register");
-
 const Route = require("express").Router();
-const Register = Route.post("/register");
+
+//register route
+const Register = Route.post("/register", register);
+
 module.exports = Route;
