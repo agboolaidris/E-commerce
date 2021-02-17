@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const mongose = require("mongoose");
+const cookieparser = require("cookie-parser");
+const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 //setting up environment variable
@@ -14,6 +16,11 @@ mongose.connect(
     console.log("database connected successful");
   }
 );
+//setting up cross origin resources sharing
+app.use(cors());
+
+//setting up cookieparser
+app.use(cookieparser());
 
 //setting up bodyparser middleware
 app.use(express.json());
