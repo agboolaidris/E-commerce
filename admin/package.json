@@ -13,8 +13,8 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "npm run build:css && set PORT=4000 && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
+    "start": " set PORT=4000 && react-scripts start",
+    "build": " && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/style/tailwind.css -o src/style/main.css"
@@ -37,5 +37,11 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "autoprefixer": "^10.2.4",
+    "postcss": "^7.0.35",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+  }
 }
