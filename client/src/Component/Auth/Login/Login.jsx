@@ -1,11 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import user from "../../../img/user.svg";
 function Login() {
   return (
     <div className="flex justify-center align-center items-center h-screen p-6 ">
       <div className="w-screen sm:w-1/2  xl:w-1/3 bg-gray-600 rounded p-6 ">
-        <div className="text-center">
+        <div className="text-center ">
+          <div className="w-full  h-20 text-center ">
+            <img src={user} className="w-20 mx-auto block" />
+          </div>
           <h2 className="text-white text-2xl">
             <span className="font-bold">LOGIN TO</span> YOUR ACCOUNT
           </h2>
