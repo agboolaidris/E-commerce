@@ -1,9 +1,9 @@
-import "./App.css";
+import Login from "./Component/Auth/Login/Login";
 
 function App() {
   return (
-    <div className="App">
-      <div className="div"></div>
+    <div className="bg-gray-200 min-h-screen ">
+      <Login />
     </div>
   );
 }
