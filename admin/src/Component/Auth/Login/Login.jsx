@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "../../../img/login.svg";
 function Login() {
   return (
@@ -17,26 +19,28 @@ function Login() {
         </div>
         <form>
           <div className="flex mt-4 bg-gray-500  h-10 rounded-full overflow-hidden item-center">
-            <label className="pt-2 text-center bg-pink-500 w-1/4 ">EMAIL</label>
+            <label className="pt-2 text-center bg-gray-600 text-pink-600">
+              <FontAwesomeIcon icon={faEnvelope} />
+            </label>
             <input
               required
-              className="w-3/4 border-none h-full focus:bg-gray-400 p-2 bg-transparent outline-none placeholder-pink-400"
+              className="w-3/4 border-none h-full focus:bg-gray-400 p-2 bg-transparent outline-none placeholder-gray-700"
               placeholder=" Admin Email"
               type="email"
             />
           </div>
           <div className="flex mt-4 bg-gray-500 h-10 rounded-full overflow-hidden item-center">
-            <label className="pt-2 text-center bg-pink-500 w-1/4">
-              Password
+            <label className="pt-2 text-center bg-gray-600 text-pink-600">
+              <FontAwesomeIcon icon={faLock} />
             </label>
             <input
               required
-              className="w-3/4 border-none h-full focus:bg-gray-400 p-2 bg-transparent outline-none placeholder-pink-400"
+              className="w-3/4 border-none h-full focus:bg-gray-400 p-2 bg-transparent outline-none placeholder-gray-700"
               placeholder=" Admin Password"
               type="password"
             />
           </div>
-          <button className="block w-full py-2 text-white bg-pink-600 mt-4 rounded-full hover:bg-gray-500">
+          <button className="block w-full py-2 text-white bg-pink-600 mt-4 rounded-full hover:bg-pink-500">
             Login
           </button>
         </form>

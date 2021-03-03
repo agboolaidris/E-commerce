@@ -1,3 +1,10 @@
 .auth-height {
   min-height: 90vh;
+  label {
+    width: 10%;
+    text-align: center;
+  }
+  input {
+    width: 90%;
+  }
 }
