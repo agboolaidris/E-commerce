@@ -1,7 +1,6 @@
-import { FALSE } from "node-sass";
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-function Route({ component: Component, ...rest }) {
+function Guest({ component: Component, ...rest }) {
   const isAuthenticated = false;
   return (
     <Route
@@ -17,4 +16,4 @@ function Route({ component: Component, ...rest }) {
   );
 }
 
-export default Route;
+export default Guest;
