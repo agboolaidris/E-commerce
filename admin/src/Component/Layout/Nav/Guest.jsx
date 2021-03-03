@@ -14,7 +14,7 @@ function Guest() {
         </Link>
       </li>
       <li className="text-2lg sm:mx-4 border-pink-400  bg-gray-200 px-3 py-1">
-        <Link to="/" className="text-pink hover:text-pink-600">
+        <Link to="/register" className="text-pink hover:text-pink-600">
           Register
         </Link>
       </li>
