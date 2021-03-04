@@ -1,12 +1,3 @@
-const User = require("../../../Models/User");
-const bcrypt = require("bcrypt");
-
-// hash password function
-const Hash = async (password) => {
-  const salt = await bcrypt.genSalt();
-  return bcrypt.hash(password, salt);
-};
-
 const register = async (req, res) => {
   try {
     const { email, username, firstname, lastname, password } = req.body;
@@ -16,7 +7,7 @@ const register = async (req, res) => {
     const user = new User({
       email,
       username,
-      role: "admin",
+      role: "user",
       firstname,
       lastname,
       password: hashpassword,
