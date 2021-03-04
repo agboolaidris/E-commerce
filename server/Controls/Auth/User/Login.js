@@ -2,10 +2,6 @@ const User = require("../../../Models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const generator = (id) => {
-  return jwt.sign(id, process.env.JWT_SECRET);
-};
-
 const login = async (req, res) => {
   try {
     const user = req.user;
@@ -15,7 +11,7 @@ const login = async (req, res) => {
         .status(400)
         .json({ msg: "this credential doesn't register as an user" });
 
-    const token = await generator({ id: user._id });
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     res.cookie("access-token", token, {}).json({ msg: "user login", token });
   } catch (error) {

@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //setting up Routers
 app.use("/api/auth", require("./Routes/Auth"));
-
+app.use("/api/category", require("./Routes/Category"));
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });

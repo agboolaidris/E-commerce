@@ -1,21 +1,14 @@
-const User = require("../../../Models/User");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
-const generator = (id) => {
-  return jwt.sign(id, process.env.JWT_SECRET);
-};
 
 const login = async (req, res) => {
   try {
     const user = req.user;
-    console.log(user);
     if (user.role !== "admin")
       return res
         .status(400)
         .json({ msg: "this credential doesn't register as an admin" });
 
-    const token = await generator({ id: user._id });
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res
       .cookie("access-token", token, { httpOnly: true })
       .json({ msg: "login successful", token });
