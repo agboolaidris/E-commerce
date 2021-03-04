@@ -8,14 +8,13 @@ const generator = (id) => {
 
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if ((!email, !password))
-      res.status(400).json({ msg: "the field is required" });
-    const user = await User.findOne({ email });
-    if (!user) res.status(401).json({ msg: "invalid credentials" });
-    const isMatch = bcrypt.compare(password, user.password);
-    if (!isMatch)
-      res.status(401).json({ msg: `email or password doesn't match` });
+    const user = req.user;
+
+    if (user.role !== "user")
+      return res
+        .status(400)
+        .json({ msg: "this credential doesn't register as an user" });
+
     const token = await generator({ id: user._id });
 
     res.cookie("access-token", token, {}).json({ msg: "user login", token });

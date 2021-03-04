@@ -9,13 +9,13 @@ const Hash = async (password) => {
 
 const register = async (req, res) => {
   try {
-    const { email, username, firstname, lastname, password } = req.body;
+    const { email, firstname, lastname, password } = req.body;
     //save user to database
     const hashpassword = await Hash(password);
 
     const user = new User({
       email,
-      username,
+      username: `${firstname}-${lastname}`,
       role: "admin",
       firstname,
       lastname,
