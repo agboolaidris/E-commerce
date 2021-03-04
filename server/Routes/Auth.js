@@ -1,11 +1,11 @@
 const Route = require("express").Router();
-const register = require("../Controls/Auth/Register");
-const login = require("../Controls/Auth/Login");
+const register = require("../Controls/Auth/Admin/Register");
+const login = require("../Controls/Auth/Admin/Login");
 const authorize = require("../Middleware/authorize");
-
+const { RegisterValidator } = require("../Validator/Auth");
 //register route
-Route.post("/register", register);
-Route.post("/login", login);
+Route.post("/admin/register", [RegisterValidator], register);
+Route.post("/admin/login", login);
 
 Route.get("/", [authorize], (req, res) => {
   res.json({ msg: "authorise" });

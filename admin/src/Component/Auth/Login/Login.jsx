@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "../../../img/login.svg";
 function Login() {
