@@ -8,7 +8,10 @@ const login = async (req, res) => {
         .status(400)
         .json({ msg: "this credential doesn't register as an admin" });
 
-    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET
+    );
     res
       .cookie("access-token", token, { httpOnly: true })
       .json({ msg: "login successful", token });

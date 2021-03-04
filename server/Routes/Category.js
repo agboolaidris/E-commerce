@@ -1,27 +1,6 @@
 const Route = require("express").Router();
-const Category = require("../Models/Category");
-const slug = require("slugify");
+const authorize = require("../Middleware/authorize");
 
-Route.post("/create", async (req, res) => {
-  try {
-    const categoryObj = {
-      name: req.body.name,
-      slug: slug(req.body.name),
-    };
-
-    if (req.body.parentId) {
-      categoryObj.parentId = req.body.parentId;
-    }
-    const category = new Category(categoryObj);
-    const response = await category.save();
-    if (!response)
-      return res
-        .status(500)
-        .json({ msg: "the user does not save into database" });
-
-    res.json(response);
-  } catch (error) {
-    res.status(400).json({ msg: error.message });
-  }
-});
+Route.post("/", [authorize], require("../Controls/Category/Create"));
+Route.get("/", require("../Controls/Category/Fetch"));
 module.exports = Route;
