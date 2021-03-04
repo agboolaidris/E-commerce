@@ -4,7 +4,9 @@ const slug = require("slugify");
 const create = async (req, res) => {
   try {
     if (req.userRole !== "admin")
-      return res.status(400).json({ msg: "only admin is required " });
+      return res
+        .status(400)
+        .json({ msg: "Access denied, only admin is required " });
     const categoryObj = {
       name: req.body.name,
       slug: slug(req.body.name),
