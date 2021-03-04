@@ -4,18 +4,19 @@ const category = (data, parentId = null) => {
   let categorylist = [];
   let list;
   if (!parentId) {
-    list = data;
+    list = data.filter((e) => e.parentId == undefined);
   } else {
     list = data.filter((e) => e.parentId == parentId);
   }
-  for (let cat of list) {
+  list.forEach((element) =>
     categorylist.push({
-      _id: cat._id,
-      name: cat.name,
-      slug: cat.slug,
-      children: category(data, cat._id),
-    });
-  }
+      _id: element._id,
+      name: element.name,
+      slug: element.slug,
+      children: category(data, element._id),
+    })
+  );
+
   return categorylist;
 };
 
