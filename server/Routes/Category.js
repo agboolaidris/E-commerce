@@ -1,11 +1,12 @@
 const Route = require("express").Router();
 const Category = require("../Models/Category");
+const slug = require("slugify");
 
 Route.post("/create", async (req, res) => {
   try {
     const categoryObj = {
       name: req.body.name,
-      slug: req.body.slug,
+      slug: slug(req.body.name),
     };
 
     if (req.body.parentId) {
