@@ -8,7 +8,12 @@ const schema = new mongoose.Schema(
     price: { type: Number },
     offer: { type: Number },
     images: [{ image: { type: String } }],
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "category" },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+      required: true,
+    },
+    quantity: { type: Number, required: true },
     reviews: [
       {
         userId: {
@@ -18,8 +23,14 @@ const schema = new mongoose.Schema(
         },
       },
     ],
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
     updateAt: Date,
   },
   { timestamps: true }
 );
+const model = mongoose.model("product", schema);
+module.exports = model;

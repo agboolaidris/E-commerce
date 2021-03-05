@@ -6,11 +6,13 @@ const Create = async (req, res) => {
       return res
         .status(400)
         .json({ msg: "request denied, only admin is authorized" });
-    const { price, decription, category, name } = req.body;
+    const { price, decription, category, name, quantity } = req.body;
 
     let images = [];
     if (req.files) {
-      images = req.files.map((file) => file.filename);
+      images = req.files.map((file) => {
+        return { image: file.filename };
+      });
     }
     const product = new Product({
       name,
@@ -19,6 +21,7 @@ const Create = async (req, res) => {
       createdBy: req.userID,
       decription,
       images,
+      quantity,
       category,
     });
     const response = await product.save();
