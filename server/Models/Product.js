@@ -10,7 +10,13 @@ const schema = new mongoose.Schema(
     images: [{ image: { type: String } }],
     category: { type: mongoose.Schema.Types.ObjectId, ref: "category" },
     reviews: [
-      { userId: mongoose.Schema.Types.ObjectId, ref: "user", review: String },
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "user",
+          review: String,
+        },
+      },
     ],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     updateAt: Date,
