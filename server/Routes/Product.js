@@ -9,14 +9,14 @@ const storage = Multer.diskStorage({
     cb(null, path.join(path.dirname(__dirname), "uploads"));
   },
   filename: function (req, file, cb) {
-    cb(null, shortid.generate() + "-" + file.orginalname);
+    cb(null, shortid.generate() + "-" + file.originalname);
   },
 });
 const upload = Multer({ storage });
 
 Route.post(
   "/",
-  [Authorize, upload.single("images")],
+  [Authorize, upload.array("images")],
   require("../Controls/Product/Create")
 );
 module.exports = Route;

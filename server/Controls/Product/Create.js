@@ -1,10 +1,30 @@
-const User = require("../../Models/Product");
-const path = require("path");
+const Product = require("../../Models/Product");
+const Slug = require("slugify");
 const Create = async (req, res) => {
   try {
-    console.log(path.dirname(__dirname));
+    if (req.userRole !== "admin")
+      return res
+        .status(400)
+        .json({ msg: "request denied, only admin is authorized" });
+    const { price, decription, category, name } = req.body;
 
-    res.json({ file: req.file, body: req.body });
+    let images = [];
+    if (req.files) {
+      images = req.files.map((file) => file.filename);
+    }
+    const product = new Product({
+      name,
+      slug: Slug(name),
+      price,
+      createdBy: req.userID,
+      decription,
+      images,
+      category,
+    });
+    const response = await product.save();
+    if (!response)
+      return res.status(500).json({ msg: "the request not save in databse" });
+    res.json(response);
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
