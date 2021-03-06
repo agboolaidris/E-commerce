@@ -1,5 +1,6 @@
 const Route = require("express").Router();
+const Authorize = require("../Middleware/authorize");
 
-Route.post("/", [], require("../Controls/Cart/create"));
+Route.post("/", [Authorize], require("../Controls/Cart/create"));
 
 module.exports = Route;
