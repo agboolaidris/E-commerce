@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", require("./Routes/Auth"));
 app.use("/api/category", require("./Routes/Category"));
 app.use("/api/product", require("./Routes/Product"));
-
+app.use("/api/cart", require("./Routes/Cart"));
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
