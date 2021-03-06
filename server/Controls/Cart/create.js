@@ -38,7 +38,11 @@ const Create = async (req, res) => {
         );
       } else {
         userCart.cartItems.push(cartItems);
-        response = await userCart.save();
+        response = await userCart.findOneAndUpdate(
+          { user: req.userID },
+          { $push: { cartItems } },
+          { new: true }
+        );
       }
     } else {
       cart = new Cart({ user: req.userID, cartItems });
